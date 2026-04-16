@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_trips
+    description: Cleaned NYC taxi trips staging model
+
+    columns:
+      - name: pickup_at
+        tests:
+          - not_null
+
+      - name: dropoff_at
+        tests:
+          - not_null
+
+      - name: trip_distance
+        tests:
+          - not_null
+
+      - name: total_amount
+        tests:
+          - not_null
