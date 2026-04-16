@@ -17,5 +17,6 @@ from {{ source('taxi', 'tlc_yellow_trips_2022') }}
 
 where trip_distance > 0
   and total_amount > 0
+  and timestamp_diff(dropoff_datetime, pickup_datetime, minute) >= 0
 
 limit 1000
