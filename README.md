@@ -1,6 +1,17 @@
-# dbt BigQuery Taxi Project
+# 🚕 NYC Taxi Analytics Project (dbt + BigQuery)
 
-Analytics engineering project built with dbt Cloud and BigQuery using the public NYC Yellow Taxi dataset.
+## 📌 Overview
+
+This project demonstrates an end-to-end analytics engineering workflow using dbt Cloud and BigQuery.
+
+The goal is to transform raw NYC taxi trip data into clean, tested, and business-ready datasets.
+
+---
+
+## 🧱 Architecture
+
+staging → intermediate → marts
+
 
 ## Project goal
 
