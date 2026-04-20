@@ -13,7 +13,7 @@ select
 
     avg(trip_duration_min) as avg_trip_duration
 
-from {{ ref('stg_trips') }}
+from {{ ref('int_trips_enriched') }}
 
 {% if is_incremental() %}
 where trip_date > (select max(trip_date) from {{ this }})
