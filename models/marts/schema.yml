@@ -34,3 +34,14 @@ models:
       - dbt_utils.expression_is_true:
           arguments: 
             expression: "avg_trip_duration > 0"
+  - name: dim_trip_type
+    description: Dimension table for trip distance categories
+
+    columns:
+      - name: trip_type
+        tests:
+          - not_null
+          - unique
+          - accepted_values:
+              arguments:
+                values: ['short', 'medium', 'long']          

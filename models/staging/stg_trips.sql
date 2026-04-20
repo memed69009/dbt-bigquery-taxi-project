@@ -11,8 +11,14 @@ select
         dropoff_datetime,
         pickup_datetime,
         minute
-    ) as trip_duration_min
+    ) as trip_duration_min,
 
+    case
+        when trip_distance < 2 then 'short'
+        when trip_distance < 10 then 'medium'
+        else 'long'
+    end as trip_type
+    
 from {{ source('taxi', 'tlc_yellow_trips_2022') }}
 
 where trip_distance > 0
