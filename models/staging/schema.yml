@@ -2,21 +2,53 @@ version: 2
 
 models:
   - name: stg_trips
-    description: Cleaned NYC taxi trips staging model
+    description: Cleaned staging model for NYC taxi trips, with renamed columns and basic quality filters.
 
     columns:
+      - name: vendor_id
+        description: Identifier of the taxi vendor.
+
       - name: pickup_at
+        description: Timestamp when the trip started.
         tests:
           - not_null
 
       - name: dropoff_at
+        description: Timestamp when the trip ended.
         tests:
           - not_null
 
+      - name: passenger_count
+        description: Number of passengers recorded for the trip.
+
       - name: trip_distance
+        description: Distance traveled during the trip, in miles.
         tests:
           - not_null
 
       - name: total_amount
+        description: Total amount paid by the customer for the trip.
         tests:
           - not_null
+
+      - name: trip_date
+        description: Calendar date of the pickup timestamp.
+
+      - name: trip_duration_min
+        description: Trip duration in minutes.
+
+      - name: trip_type
+        description: "Distance-based trip category: short, medium, or long."
+
+    tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "total_amount > 0"
+
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "trip_distance > 0"
+
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "trip_duration_min >= 0"

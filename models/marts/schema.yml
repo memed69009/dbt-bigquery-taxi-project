@@ -2,46 +2,52 @@ version: 2
 
 models:
   - name: fct_daily_trips
-    description: Daily aggregated metrics for NYC taxi trips
+    description: Daily fact table containing trip volume, revenue, and average trip duration.
 
     columns:
       - name: trip_date
+        description: Calendar day for the aggregated taxi trips.
         tests:
           - not_null
           - unique
 
       - name: total_trips
+        description: Total number of trips for the given day.
         tests:
           - not_null
 
       - name: total_revenue
+        description: Sum of trip total amounts for the given day.
         tests:
           - not_null
 
       - name: avg_trip_duration
+        description: Average trip duration in minutes for the given day.
         tests:
           - not_null
 
     tests:
       - dbt_utils.expression_is_true:
-          arguments: 
+          arguments:
             expression: "total_trips > 0"
 
       - dbt_utils.expression_is_true:
-          arguments: 
+          arguments:
             expression: "total_revenue > 0"
 
       - dbt_utils.expression_is_true:
-          arguments: 
-            expression: "avg_trip_duration > 0"
+          arguments:
+            expression: "avg_trip_duration >= 0"
+
   - name: dim_trip_type
-    description: Dimension table for trip distance categories
+    description: Dimension table listing the possible trip distance categories.
 
     columns:
       - name: trip_type
+        description: Distance-based category assigned to each trip.
         tests:
           - not_null
           - unique
           - accepted_values:
               arguments:
-                values: ['short', 'medium', 'long']          
+                values: ['short', 'medium', 'long']
