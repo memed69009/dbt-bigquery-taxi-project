@@ -1,4 +1,7 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized='incremental',
+    unique_key='trip_date'
+) }}
 
 select
 
@@ -11,6 +14,10 @@ select
     avg(trip_duration_min) as avg_trip_duration
 
 from {{ ref('stg_trips') }}
+
+{% if is_incremental() %}
+where trip_date > (select max(trip_date) from {{ this }})
+{% endif %}
 
 group by trip_date
 order by trip_date
