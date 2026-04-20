@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: fct_daily_trips
+    description: Daily aggregated metrics for NYC taxi trips
+
+    columns:
+      - name: trip_date
+        tests:
+          - not_null
+          - unique
+
+      - name: total_trips
+        tests:
+          - not_null
+
+      - name: total_revenue
+        tests:
+          - not_null
+
+      - name: avg_trip_duration
+        tests:
+          - not_null
+
+    tests:
+      - dbt_utils.expression_is_true:
+          arguments: 
+            expression: "total_trips > 0"
+
+      - dbt_utils.expression_is_true:
+          arguments: 
+            expression: "total_revenue > 0"
+
+      - dbt_utils.expression_is_true:
+          arguments: 
+            expression: "avg_trip_duration > 0"
