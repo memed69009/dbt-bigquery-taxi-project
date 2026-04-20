@@ -1,53 +1,79 @@
-# 🚕 NYC Taxi Analytics Project (dbt + BigQuery)
+# NYC Taxi Analytics Engineering Project
 
-## 📌 Overview
-
-This project demonstrates an end-to-end analytics engineering workflow using dbt Cloud and BigQuery.
-
-The goal is to transform raw NYC taxi trip data into clean, tested, and business-ready datasets.
+End-to-end analytics engineering project built with **dbt Cloud** and **BigQuery** using the public **NYC Yellow Taxi Trips** dataset.
 
 ---
 
-## 🧱 Architecture
+## Project Overview
 
-staging → intermediate → marts
+This project was created to practice the core concepts of analytics engineering with dbt:
 
+- declaring sources
+- building a layered modeling structure
+- cleaning and transforming raw data
+- adding data quality tests
+- documenting models
+- creating business-facing marts
+- versioning the project with GitHub
 
-## Project goal
+The project uses public New York City taxi trip data available in BigQuery and transforms it into analytics-ready datasets.
 
-This project demonstrates a beginner-friendly but realistic analytics engineering workflow:
+---
 
-- declare raw sources
-- build a clean staging layer
-- add data quality tests
-- create business-facing marts
-- document the project
-- use GitHub for version control
+## Business Goal
 
-## Tech stack
+The goal is to answer simple but realistic business questions such as:
 
-- dbt Cloud
-- BigQuery
-- GitHub
-- dbt_utils package
+- How many trips happen each day?
+- What is the daily revenue?
+- What is the average trip duration?
+- How can trips be segmented into categories?
+
+This simulates the work of an Analytics Engineer who takes raw operational data and turns it into trusted datasets for reporting and decision-making.
+
+---
+
+## Tech Stack
+
+- **dbt Cloud**
+- **BigQuery**
+- **GitHub**
+- **dbt_utils**
+
+---
 
 ## Dataset
 
-Source: NYC Yellow Taxi public dataset in BigQuery
+Source dataset:
 
-- project: `bigquery-public-data`
-- dataset: `new_york_taxi_trips`
-- table: `tlc_yellow_trips_2022`
+- **Project**: `bigquery-public-data`
+- **Dataset**: `new_york_taxi_trips`
+- **Table**: `tlc_yellow_trips_2022`
 
-## Project structure
+This dataset contains raw information about New York yellow taxi trips, including pickup and dropoff timestamps, distance, passenger count, and total amount paid.
+
+---
+
+## Project Structure
 
 ```text
-models/
-├── staging/
-│   ├── src_taxi.yml
-│   ├── schema.yml
-│   └── stg_trips.sql
-├── marts/
-│   ├── schema.yml
-│   ├── dim_trip_type.sql
-│   └── fct_daily_trips.sql
+dbt-bigquery-taxi-project/
+├── models/
+│   ├── staging/
+│   │   ├── src_taxi.yml
+│   │   ├── schema.yml
+│   │   └── stg_trips.sql
+│   ├── intermediate/
+│   │   └── int_trips_enriched.sql
+│   └── marts/
+│       ├── dim_trip_type.sql
+│       ├── fct_daily_trips.sql
+│       └── schema.yml
+├── macros/
+├── seeds/
+├── snapshots/
+├── tests/
+├── .gitignore
+├── dbt_project.yml
+├── packages.yml
+└── README.md
