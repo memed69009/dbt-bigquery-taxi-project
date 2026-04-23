@@ -1,4 +1,4 @@
-# NYC Taxi Analytics Engineering Project
+# 🚕 NYC Taxi Analytics Engineering Project
 
 End-to-end analytics engineering project built with **dbt Cloud** and **BigQuery** using the public **NYC Yellow Taxi Trips** dataset.
 
@@ -39,6 +39,7 @@ This simulates the work of an Analytics Engineer who takes raw operational data 
 - **BigQuery**
 - **GitHub**
 - **dbt_utils**
+- **Power BI Service (dashboard)**
 
 ---
 
@@ -76,4 +77,5 @@ dbt-bigquery-taxi-project/
 ├── .gitignore
 ├── dbt_project.yml
 ├── packages.yml
-└── README.md
+├── README.md
+└── dashboard.png
