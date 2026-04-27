@@ -39,7 +39,7 @@ This simulates the work of an Analytics Engineer who takes raw operational data 
 - **BigQuery**
 - **GitHub**
 - **dbt_utils**
-- **Power BI Service (dashboard)**
+- **Data Studio (dashboard)**
 
 ---
 
