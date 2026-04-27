@@ -78,4 +78,4 @@ dbt-bigquery-taxi-project/
 ├── dbt_project.yml
 ├── packages.yml
 ├── README.md
-└── dashboard.png
+└── dashboard.pdf
